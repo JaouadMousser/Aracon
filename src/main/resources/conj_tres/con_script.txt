@@ -1,0 +1,14 @@
+perl -pi -e 's/tr//g' *.xml
+perl -pi -e 's/th//g' *.xml
+perl -pi -e 's/td//g' *.xml
+perl -pi -e 's/<\/>//g' *.xml
+perl -pi -e 's/<>//g' *.xml
+perl -pi -e 's/&nbsp;/&/g' *.xml
+perl -pi -e 's/&&/&null&null/g' *.xml
+perl -pi -e 's/أنتما مؤ/أنتمامو/g' *.xml
+perl -pi -e 's/هما مؤ/همامو/g' *.xml
+perl -pi -e 's/null/لا/g' *.xml
+
+
+
+
