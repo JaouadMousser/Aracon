@@ -383,25 +383,4 @@ public class Conjugator {
 	// matche the pattern: OafoEala but have different conjugation:
 	// Oaqolama, Oamoraka, Oasolama, Oaro$afa
 
-	public static void main(String[] args) throws ParserConfigurationException,
-			SAXException, IOException {
-
-		Conjugator conj = new Conjugator("slk");
-		
-		conj.SelectConjModel();
-		//System.out.println(conj.getPattern());
-		conj.buildSimpleTenses(Mode.PASSIVE);
-		conj.buildComplexTenses();
-		Map<String, String> map = conj.get_past_perfect();
-		
-		List aux = new LinkedList(map.entrySet());
-		Concode conc = null;
-		Map.Entry entry = null;
-		for (int l = 0; l < aux.size(); l++) {
-			entry = (Map.Entry) aux.get(l);
-			conc = new Concode(entry.getValue().toString());
-			System.out
-					.println(entry.getKey() + " ==> " + conc.Buckwalter2Arabic());
-		}
-	}
 }
