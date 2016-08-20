@@ -12,7 +12,7 @@ public class test {
 	public static void main(String[] args) throws ParserConfigurationException,
 			SAXException, IOException {
 
-		Conjugator conj = new Conjugator("mlml");
+		Conjugator conj = new Conjugator("OlY");
 
 		conj.SelectConjModel();
 		// System.out.println(conj.getPattern());

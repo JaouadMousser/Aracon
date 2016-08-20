@@ -1333,7 +1333,7 @@ public class MorphPatternAnalyser {
 			String line;
 
 			bf = new BufferedReader(new FileReader(new File(
-					"src/main/resources/conj_tres/naAqiS_Verbs.tbl")));
+					"src/main/resources/conj_tres/NaAqiS_Verbs.tbl")));
 			while ((line = bf.readLine()) != null) {
 				String[] kv = line.split("\t");
 				naAqiS_map.put(kv[0], kv[1]);
