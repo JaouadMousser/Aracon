@@ -8,35 +8,31 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
 import aracon.Conjugator.Mode;
 
-
 public class test {
-public static void main(String[] args) throws ParserConfigurationException,  SAXException, IOException {
+	public static void main(String[] args) throws ParserConfigurationException,
+			SAXException, IOException {
 
+		Conjugator conj = new Conjugator("mlml");
 
-Conjugator conj = new Conjugator("slk");
+		conj.SelectConjModel();
+		// System.out.println(conj.getPattern());
+		conj.buildSimpleTenses(Mode.ACTIVE);
 
-conj.SelectConjModel();
-//System.out.println(conj.getPattern());
-conj.buildSimpleTenses(Mode.ACTIVE);
+		conj.buildComplexTenses();
 
-conj.buildComplexTenses();
+		Map<String, String> map = conj.get_muDaAriE1();
 
-Map<String, String> map = conj.get_past_perfect();
+		List aux = new LinkedList(map.entrySet());
+		Concode conc = null;
+		Map.Entry entry = null;
+		for (int l = 0; l < aux.size(); l++) {
 
-List aux = new LinkedList(map.entrySet());
+			entry = (Map.Entry) aux.get(l);
 
-Concode conc = null;
+			conc = new Concode(entry.getValue().toString());
 
-Map.Entry entry = null;
+			System.out.println(entry.getKey() + " ==> " + conc.buck12Arabic());
 
-for (int l = 0; l < aux.size(); l++) {
-	
-	entry = (Map.Entry) aux.get(l);
-	
-	conc = new Concode(entry.getValue().toString());
-	
-	System.out.println(entry.getKey() + " ==> " + conc.buck12Arabic());
-	
-}
-}
+		}
+	}
 }

@@ -1,4 +1,5 @@
 package aracon;
+
 //This file is part of the  ARACON Java library.
 //Copyright (C) 2011 Jaouad Mousser
 //				  Jaouad.Mousser@uni-konstanz.de
@@ -55,7 +56,10 @@ public class Conjugator {
 	private String conson = "[O|b|t|v|j|H|x|d|\\*|r|z|T|S|D|Z|s|l|m|n|h|E|g|\\$|y|w|f|q|k|W|I|\\}|']{1}";
 	private String vowel = "[a|u|i]";
 
-	private File fd_patt_modell = new File("src/main/resources/conj_tres");// Folder of the pattern
+	private File fd_patt_modell = new File("src/main/resources/conj_tres");// Folder
+																			// of
+																			// the
+																			// pattern
 	// modell
 	private File[] files = fd_patt_modell.listFiles();// files of the pattern
 	// modelln
@@ -80,7 +84,8 @@ public class Conjugator {
 	ArrayList<Document> list_rel_doc = new ArrayList<Document>();
 
 	Concode conc = null;
-//
+
+	//
 	public enum Mode {
 		PASSIVE, ACTIVE
 	}
@@ -94,7 +99,7 @@ public class Conjugator {
 
 	public void SelectConjModel() throws ParserConfigurationException,
 			SAXException, IOException {
-		conc  = new Concode(verb);
+		conc = new Concode(verb);
 		mpa = new MorphPatternAnalyser(conc.arabic2buck1());// Pattern analyser
 		mpa.get_pattern();
 		wazn = mpa.get_wazn();
@@ -118,7 +123,7 @@ public class Conjugator {
 							.substring(0, file.getName().length() - 12)
 							.equalsIgnoreCase(wazn)) {
 				list_rel_doc.add(builder.parse(file));
-				//System.out.println(file.getName());
+				// System.out.println(file.getName());
 			}
 		}
 	}
@@ -163,11 +168,11 @@ public class Conjugator {
 							.equalsIgnoreCase("perfect")) {
 						pers_pro = conj_el.getAttribute("PRS_PRN");
 						verb1 = map_fEl(conj_el.getAttribute("VERB"));
-						
+
 						conc = new Concode(verb1);
-						
-						//System.out.println(pers_pro+"-"+temp+"-"+modeAttr+
-						//" ==>"+normalize(verb1));
+
+						// System.out.println(pers_pro+"-"+temp+"-"+modeAttr+
+						// " ==>"+normalize(verb1));
 						map_perfect.put(pers_pro + "-" + temp + "-" + modeAttr,
 								normalize(verb1));
 					}
@@ -182,8 +187,8 @@ public class Conjugator {
 								"sa" + normalize(verb1));
 						map_future2.put(pers_pro + "-" + "Futur2-" + modeAttr,
 								"sawofa " + normalize(verb1));
-						 //System.out.println(pers_pro+"-"+"Futur2-"+modeAttr
-						 //+"==>"+ "sawofa "+normalize(verb1));
+						// System.out.println(pers_pro+"-"+"Futur2-"+modeAttr
+						// +"==>"+ "sawofa "+normalize(verb1));
 					} else if (conj_el.getAttribute("TEMP").equals("muDaAriE2")) {
 						verb1 = map_fEl(conj_el.getAttribute("VERB"));
 						map_muDaAriE2.put(pers_pro + "-" + temp + "-"
@@ -220,12 +225,10 @@ public class Conjugator {
 
 				}
 			}
-			
+
 		}
 
 	}
-
-	
 
 	// Chedda
 	public String shedda(String verb) {
@@ -233,9 +236,8 @@ public class Conjugator {
 		Matcher m = Pattern.compile(regex).matcher(verb);
 		if (m.find()) {
 			if (m.group(1).equals(m.group(3))) {
-				verb = verb.replace(m.group(1) + m.group(2) + m.group(3), m
-						.group(1)
-						+ "~");
+				verb = verb.replace(m.group(1) + m.group(2) + m.group(3),
+						m.group(1) + "~");
 			}
 		}
 		return verb;
@@ -331,27 +333,28 @@ public class Conjugator {
 	public Map<String, String> get_imperative2() {
 		return map_imperative2;
 	}
-  
-	public String getPattern(){
+
+	public String getPattern() {
 		return wazn;
 	}
-	public String getRoot(){
+
+	public String getRoot() {
 		return root;
 	}
+
 	public void buildComplexTenses() throws ParserConfigurationException,
 			SAXException, IOException {
 		Conjugator conj = new Conjugator("kaAna");
 		conj.SelectConjModel();
 		conj.buildSimpleTenses(Mode.ACTIVE);
-		
+
 		Map<String, String> muD1 = conj.get_perfect();
-		
+
 		Map<String, String> fut = conj.get_future1();
-	
+
 		List Pentries = new LinkedList(map_muDaAriE2.entrySet());
-	    
-		
-		//System.out.println(Pentries);
+
+		// System.out.println(Pentries);
 		List PTentries = new LinkedList(map_perfect.entrySet());
 		List Fentries = new LinkedList(fut.entrySet());
 		List Xentries = new LinkedList(muD1.entrySet());
@@ -364,18 +367,22 @@ public class Conjugator {
 			entryX = (Map.Entry) Xentries.get(l);
 			entryPt = (Map.Entry) PTentries.get(l);
 			entryXf = (Map.Entry) Fentries.get(l);
-			map_past_cont.put((String) entryX.getKey().toString().replace(
-					"Perfect", "PastContinuous"), entryX.getValue() + " "
-					+ entryV.getValue());
-			map_subjunctive.put((String) entryX.getKey().toString().replace(
-					"Perfect", "Subjunctive"), entryX.getValue() + " sa"
-					+ entryV.getValue());
-			map_past_perf.put((String) entryX.getKey().toString().replace(
-					"Perfect", "PastPerfect"), entryX.getValue() + " (qado) "
-					+ entryPt.getValue());
-			map_future_perf.put((String) entryX.getKey().toString().replace(
-					"Perfect", "FuturePerfect"), entryXf.getValue()
-					+ " (qado) " + entryPt.getValue());
+			map_past_cont.put(
+					(String) entryX.getKey().toString()
+							.replace("Perfect", "PastContinuous"),
+					entryX.getValue() + " " + entryV.getValue());
+			map_subjunctive.put(
+					(String) entryX.getKey().toString()
+							.replace("Perfect", "Subjunctive"),
+					entryX.getValue() + " sa" + entryV.getValue());
+			map_past_perf.put(
+					(String) entryX.getKey().toString()
+							.replace("Perfect", "PastPerfect"),
+					entryX.getValue() + " (qado) " + entryPt.getValue());
+			map_future_perf.put(
+					(String) entryX.getKey().toString()
+							.replace("Perfect", "FuturePerfect"),
+					entryXf.getValue() + " (qado) " + entryPt.getValue());
 		}
 	}
 

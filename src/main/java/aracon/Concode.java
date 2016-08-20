@@ -183,4 +183,9 @@ public class Concode {
 		return strbf.toString();
 	}
 
+	public static void main(String[] args) {
+		Concode cn = new Concode("<");
+		System.out.println(cn.buck12Arabic());
+	}
+
 }
