@@ -95,7 +95,7 @@ public class Conjugator {
 	public void SelectConjModel() throws ParserConfigurationException,
 			SAXException, IOException {
 		conc  = new Concode(verb);
-		mpa = new MorphPatternAnalyser(conc.Arabic2Buckwalter());// Pattern analyser
+		mpa = new MorphPatternAnalyser(conc.arabic2buck1());// Pattern analyser
 		mpa.get_pattern();
 		wazn = mpa.get_wazn();
 		root = mpa.get_root();
