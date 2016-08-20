@@ -83,9 +83,7 @@ public static void main(String[] args) throws ParserConfigurationException,SAXEx
            
            conc = new Concode(entry.getValue().toString());
            
-           System.out.println(entry.getKey() + "==>" +
-           
-           conc.Buckwalter2Arabic());
+           System.out.println(entry.getKey() + " ==> " + conc.buck12Arabic());
            }
       }
       
