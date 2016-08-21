@@ -274,7 +274,6 @@ public class Conjugator {
 		} else if (cjV.contains("IiOo")) {
 			normalized = cjV.replace("IiOo", "Ii}o");
 		}
-
 		else {
 			normalized = cjV;
 		}

@@ -12,15 +12,19 @@ public class test {
 	public static void main(String[] args) throws ParserConfigurationException,
 			SAXException, IOException {
 
-		Conjugator conj = new Conjugator("OlY");
+		Conjugator conj = new Conjugator("slY");
+		
 
 		conj.SelectConjModel();
+		
+		System.out.println(conj.getPattern());
+		
 		// System.out.println(conj.getPattern());
 		conj.buildSimpleTenses(Mode.ACTIVE);
 
 		conj.buildComplexTenses();
 
-		Map<String, String> map = conj.get_muDaAriE1();
+		Map<String, String> map = conj.get_imperative1();
 
 		List aux = new LinkedList(map.entrySet());
 		Concode conc = null;
