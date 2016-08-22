@@ -1,13 +1,17 @@
-perl -pi -e 's/tr//g' *.xml
-perl -pi -e 's/th//g' *.xml
-perl -pi -e 's/td//g' *.xml
-perl -pi -e 's/<\/>//g' *.xml
-perl -pi -e 's/<>//g' *.xml
-perl -pi -e 's/&nbsp;/&/g' *.xml
-perl -pi -e 's/&&/&null&null/g' *.xml
-perl -pi -e 's/أنتما مؤ/أنتمامو/g' *.xml
-perl -pi -e 's/هما مؤ/همامو/g' *.xml
-perl -pi -e 's/null/لا/g' *.xml
+
+pers_map.put("OnA", "1.PERS_SNG");
+pers_map.put("nHn", "1.PRS-PL");
+pers_map.put("Ont", "2.PRS-SG-MASC");
+pers_map.put("Onti", "2.PRS-SG-FEM");
+pers_map.put("OntmA", "2.PRS-DUAL-MASC");
+pers_map.put("Ontm", "2.PRS-PL-MASC");
+pers_map.put("Ontn", "2.PRS-PL-FEM");
+pers_map.put("hw", "3.PRS-SG-MASC");
+pers_map.put("hy", "3.PRS-SG-FEM");
+pers_map.put("hmA", "3.PRS-DUAL-MASC");
+pers_map.put("hmA m&", "3.PRS-DUAL-FEM");
+pers_map.put("hm", "3.PRS-PL-MASC");
+pers_map.put("hn", "3.PRS-PL-FEM");
 
 
 

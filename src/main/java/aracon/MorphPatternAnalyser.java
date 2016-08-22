@@ -57,6 +57,8 @@ public class MorphPatternAnalyser {
 			+ ")(a)"; // أمدَّ
 	private String faEala = "(" + F + ")" + "(a)" + "(" + E + ")" + "(a)" + "("
 			+ L + ")" + "(a)"; // فعل
+	private String waEala = "(w"   + ")" + "(a)" + "(" + E + ")" + "(a)" + "("
+			+ L + ")" + "(a)"; // waqafa, walaqa, warada
 	private String faAla = "(" + F + ")(a)(A)(" + L + ")(a)"; // قال سال
 	private String IisotafaAla = "(Iisota)(" + F + ")(a)(A)(" + L + ")(a)";// إستقال
 	private String OafaAla = "(Oa)(" + F + ")(a)(A)(" + L + ")(a)";
@@ -273,14 +275,24 @@ public class MorphPatternAnalyser {
 	}
 
 	public void get_pattern() {
-		Matcher m = Pattern.compile(faEala).matcher(verb);
+		Matcher m = Pattern.compile(waEala).matcher(verb);
+		if (m.matches()) {
+			wazn = "waEaLa";
+			faA = m.group(1);
+			Eayn = m.group(3);
+			laAm = m.group(5);
+			root = faA + Eayn + laAm;
+		}
+		else {	
+		m = Pattern.compile(faEala).matcher(verb);
 		if (m.matches()) {
 			wazn = "FaE0La";
 			faA = m.group(1);
 			Eayn = m.group(3);
 			laAm = m.group(5);
 			root = faA + Eayn + laAm;
-		} else {
+		} 
+		else {
 			m = Pattern.compile(faAEala).matcher(verb);
 			if (m.matches()) {
 				wazn = "FaAEaLa";
@@ -1219,7 +1231,7 @@ public class MorphPatternAnalyser {
 								}
 
 							}
-
+						}
 						}
 					}
 				}
